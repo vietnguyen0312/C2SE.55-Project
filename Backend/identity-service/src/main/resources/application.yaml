@@ -1,0 +1,29 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /identity
+
+spring:
+  datasource:
+    url: "jdbc:mysql://localhost:3307/identity"
+    username: root
+    password: root
+    driver-class-name: "com.mysql.cj.jdbc.Driver"
+  jpa:
+    hibernate:
+      ddl-auto: update
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    business: Healing Ecotourism
+    feedback: nguyenhoangviet8@dtu.edu.vn
+    username: vietnguyen0312@gmail.com
+    password: iurthiqycrlszgmn
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  jackson:
+    time-zone: GMT+7
