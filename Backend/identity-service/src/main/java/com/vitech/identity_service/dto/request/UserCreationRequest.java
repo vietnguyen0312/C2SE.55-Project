@@ -25,9 +25,5 @@ public class UserCreationRequest {
     @Size(min = 8, message = "MIN_SIZE")
     String password;
 
-    @Pattern(regexp = "^\\+?[0-9. ()-]{7,25}$", message = "INVALID")
-    String phoneNumber;
-
-    @Pattern(regexp = "^(Male|Female|Other)$", message = "GENDER_INVALID")
-    String gender;
+    String role;
 }

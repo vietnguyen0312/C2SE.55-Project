@@ -37,31 +37,11 @@ import java.util.stream.Collectors;
 public class UserService {
     UserRepository userRepository;
     UserMapper userMapper;
-//    PasswordEncoder passwordEncoder;
+    PasswordEncoder passwordEncoder;
 
     public UserResponse createUser(UserCreationRequest request, String role) {
 
         User user = userMapper.toUser(request);
-
-//        if (request.getPassword() != null)
-//            user.setPassword(passwordEncoder.encode(request.getPassword()));
-
-//        HashSet<Role> roles = new HashSet<>();
-//
-//        switch (role.toLowerCase()){
-//            case "manager": roles.add(Role.builder()
-//                    .name(RoleEnum.ROLE_MANAGER.getName())
-//                    .description(RoleEnum.ROLE_MANAGER.getDescription())
-//                    .build());
-//            case "employee": roles.add(Role.builder()
-//                    .name(RoleEnum.ROLE_EMPLOYEE.getName())
-//                    .description(RoleEnum.ROLE_EMPLOYEE.getDescription())
-//                    .build());
-//            case "customer": roles.add(Role.builder()
-//                    .name(RoleEnum.ROLE_CUSTOMER.getName())
-//                    .description(RoleEnum.ROLE_CUSTOMER.getDescription())
-//                    .build());
-//        }
 
         try {
             user = userRepository.save(user);
@@ -126,7 +106,7 @@ public class UserService {
     public UserResponse getUserByGmail(String email) {
         return userRepository.findByEmail(email)
                 .map(userMapper::toUserResponse)
-                .orElse(null); // Trả về null nếu không tìm thấy
+                .orElse(null);
     }
 
     @PostAuthorize("returnObject.email == authentication.name or hasRole('EMPLOYEE')")
@@ -138,15 +118,15 @@ public class UserService {
         return userMapper.toUserResponse(userRepository.save(user));
     }
 
-//    @PostAuthorize("returnObject.email == authentication.name or hasRole('EMPLOYEE')")
-//    public UserResponse changePassword(String id, UserChangePasswordRequest request) {
-//        User user = userRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.NOT_EXISTED));
-//
-//        if (!passwordEncoder.matches(request.getCurrentPassword(), user.getPassword()))
-//            throw new AppException(ErrorCode.PASSWORD_INCORRECT);
-//
-//        user.setPassword(passwordEncoder.encode(request.getNewPassword()));
-//
-//        return userMapper.toUserResponse(userRepository.save(user));
-//    }
+    @PostAuthorize("returnObject.email == authentication.name or hasRole('EMPLOYEE')")
+    public UserResponse changePassword(String id, UserChangePasswordRequest request) {
+        User user = userRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.NOT_EXISTED));
+
+        if (!passwordEncoder.matches(request.getCurrentPassword(), user.getPassword()))
+            throw new AppException(ErrorCode.PASSWORD_INCORRECT);
+
+        user.setPassword(passwordEncoder.encode(request.getNewPassword()));
+
+        return userMapper.toUserResponse(userRepository.save(user));
+    }
 }

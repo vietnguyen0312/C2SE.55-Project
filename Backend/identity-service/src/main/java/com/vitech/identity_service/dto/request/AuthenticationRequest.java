@@ -1,20 +1,14 @@
-package com.vitech.identity_service.dto.response;
+package com.vitech.identity_service.dto.request;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserResponse {
-    String id;
+public class AuthenticationRequest {
     String username;
-    String email;
     String password;
-    String status;
-    String role;
 }

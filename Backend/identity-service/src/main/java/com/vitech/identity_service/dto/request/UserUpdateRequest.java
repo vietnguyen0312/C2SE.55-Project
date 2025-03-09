@@ -23,4 +23,6 @@ public class UserUpdateRequest {
     String email;
 
     String role;
+
+    String status;
 }

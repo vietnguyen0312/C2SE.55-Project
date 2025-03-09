@@ -97,13 +97,11 @@ public class UserController {
                 .build();
     }
 
-//    @PostMapping("/change-password/{id}")
-//    ApiResponse<UserResponse> changePassword(@PathVariable("id") String id, @RequestBody @Valid UserChangePasswordRequest request) {
-//        return ApiResponse
-//                .<UserResponse>builder()
-//                .result(userService.changePassword(id, request))
-//                .build();
-//    }
-
-
+    @PostMapping("/change-password/{id}")
+    ApiResponse<UserResponse> changePassword(@PathVariable("id") String id, @RequestBody @Valid UserChangePasswordRequest request) {
+        return ApiResponse
+                .<UserResponse>builder()
+                .result(userService.changePassword(id, request))
+                .build();
+    }
 }

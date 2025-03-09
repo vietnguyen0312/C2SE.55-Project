@@ -3,6 +3,7 @@ package com.vitech.identity_service.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.springframework.util.StringUtils;
 
 @Entity
 @Table(name = "user")
@@ -16,10 +17,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.UUID)
     String id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     String username;
 
-    @Column( unique = true, columnDefinition = "VARCHAR(255) COLLATE utf8mb4_unicode_ci")
+    @Column(nullable = false ,unique = true)
     String email;
 
     @Column(nullable = false)
@@ -27,4 +28,14 @@ public class User {
 
     @Column(nullable = false)
     String role;
+
+    @Column(nullable = false)
+    String status;
+
+    @PrePersist
+    public void prePersist() {
+        if (!StringUtils.hasLength(status)) {
+            status = "Đang hoạt động";
+        }
+    }
 }
