@@ -1,8 +1,7 @@
 package com.vitech.device_service.exception;
 
-import com.vitech.identity_service.dto.response.ApiResponse;
-import com.vitech.identity_service.enums.ErrorCode;
-import com.vitech.identity_service.exception.AppException;
+import com.vitech.device_service.dto.response.ApiResponse;
+import com.vitech.device_service.enums.ErrorCode;
 import jakarta.validation.ConstraintViolation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

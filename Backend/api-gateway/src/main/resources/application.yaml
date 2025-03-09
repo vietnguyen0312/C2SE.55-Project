@@ -16,3 +16,9 @@ spring:
             - Path=${app.api-prefix}/identity/**
           filters:
             - StripPrefix=1
+        - id: device_service
+          uri: http://localhost:8081
+          predicates:
+            - Path=${app.api-prefix}/device/**
+          filters:
+            - StripPrefix=1

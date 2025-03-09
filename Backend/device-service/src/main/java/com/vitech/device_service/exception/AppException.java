@@ -1,6 +1,6 @@
 package com.vitech.device_service.exception;
 
-import com.vitech.identity_service.enums.ErrorCode;
+import com.vitech.device_service.enums.ErrorCode;
 import lombok.Getter;
 import lombok.Setter;
 
