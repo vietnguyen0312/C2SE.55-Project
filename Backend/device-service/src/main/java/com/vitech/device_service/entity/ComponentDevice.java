@@ -4,30 +4,23 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.util.List;
-
 @Entity
-@Table(name = "device")
+@Table(name = "component_device")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Device {
+public class ComponentDevice {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     String id;
 
-    @Column(nullable = false, unique = true)
-    String name;
+    @ManyToOne
+    @JoinColumn(name = "device_id")
+    Device device;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
-    Category category;
-
-    @Column(nullable = false)
-    String image;
-
-    @Column(nullable = false)
-    int quantity;
+    @JoinColumn(name = "component_id")
+    Component component;
 }

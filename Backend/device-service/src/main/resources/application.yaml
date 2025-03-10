@@ -12,3 +12,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+
+app:
+  services:
+    identity: http://localhost:8080/identity

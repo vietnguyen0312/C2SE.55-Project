@@ -26,6 +26,10 @@ public class SecurityConfig {
             "/auth/**"
     };
 
+    private final String[] GET_PUBLIC_ENDPOINTS = {
+
+    };
+
     @Autowired
     private CustomJwtDecoder customJwtDecoder;
 
@@ -34,6 +38,7 @@ public class SecurityConfig {
         httpSecurity.authorizeHttpRequests(
                 request -> request
                         .requestMatchers(HttpMethod.POST, POST_PUBLIC_ENDPOINTS).permitAll()
+                        .requestMatchers(HttpMethod.GET, GET_PUBLIC_ENDPOINTS).permitAll()
                         .anyRequest().authenticated());
 
         httpSecurity.oauth2ResourceServer(oauth2 -> oauth2.jwt(jwtConfigurer -> jwtConfigurer.decoder(customJwtDecoder)

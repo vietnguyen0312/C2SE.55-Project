@@ -1,0 +1,9 @@
+package com.vitech.device_service.repository;
+
+import com.vitech.device_service.entity.ComponentDevice;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ComponentDeviceRepository extends JpaRepository<ComponentDevice, String> {
+}

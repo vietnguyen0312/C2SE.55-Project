@@ -35,7 +35,9 @@ public class ConfigurationFilter implements GlobalFilter, Ordered {
     ObjectMapper objectMapper;
 
     @NonFinal
-    private String[] publicEndpoints = {"/identity/auth/.*"};
+    private String[] publicEndpoints = {
+            "/identity/auth/.*",
+    };
 
     @Value("${app.api-prefix}")
     @NonFinal

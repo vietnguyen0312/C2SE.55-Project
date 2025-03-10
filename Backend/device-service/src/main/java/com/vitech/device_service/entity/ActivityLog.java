@@ -18,9 +18,16 @@ public class ActivityLog {
     @GeneratedValue(strategy = GenerationType.UUID)
     String id;
 
+    @Column(nullable = false)
+    String userId;
+
     @ManyToOne
     @JoinColumn(name = "device_detail_id")
     DeviceDetail deviceDetail;
+
+    @ManyToOne
+    @JoinColumn(name = "maintain_schedule_id")
+    MaintainSchedule maintainSchedule;
 
     @Column(nullable = false)
     String description;
